@@ -42,15 +42,15 @@
                             <tbody>{% endcomment %}
                             <div class="row">
                             {% for post in posts %}
-                                <div class="col-4" style="display: flex; flex-wrap: nowrap; word-wrap: break-word; word-break: break-word">
+                                <div class="col-3 my-2" style="display: flex; flex-wrap: nowrap; word-wrap: break-word; word-break: break-word">
                                 <img src="{{ MEDIA_URL }}/default/document.png" height="128" alt="{{ MEDIA_URL }}" loading="lazy" style="margin-top: -3px; margin-right: 1rem" />
                                 <div style="line-height: 90%; display: flex; flex-direction: column; justify-content: space-between">
                                     <div>
                                         <p class="text-start"><strong>{{ post.title }}</strong></p>
                                     <p class="text-start "><small>{{ post.description }}</small></p>
-                                    <p class="text-start"><a href="{{ post.file_path.url }}" download="{{ post.file_path|replaceBlank:'uploads/' }}">Download<i class="fa fa-download"></i></a></p>
+                                    <p class="text-start"><a href="{{ post.file_path.url }}" download="{{ post.file_path|replaceBlank:'uploads/' }}">Download<i class="fa fa-download ms-1"></i></a></p>
                                     </div>
-                                    <p class="text-start"><button class="btn btn-default bg-gradient btn-sm copy-link" type="button" data-url="{{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}" title="Copy Link tp clipboard"><i class="fa fa-copy"></i> Share Link</button></p>
+                                    <p class="text-start"><button class="btn btn-default bg-gradient btn-sm copy-link" type="button" data-url="{{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}" title="Copy Link tp clipboard"><i class="fa fa-copy me-1"></i> Share Link</button></p>
                                 </div>
                                 </div>
                             {% endfor %}
