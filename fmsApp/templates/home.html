@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load humanize %} {% load customfilter %} {% block pageContent %}
 
     <!--Section: Content-->
-    <section class="">
+    <section class="" style="min-height: 100vh">
 
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -17,14 +17,14 @@
         </div>
         <hr>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card card-default border rounded-0">
                     <div class="card-header">
-                        <h4 class="card-title pt-2"><b>My Files</b></h4>
+                        <h4 class="text-black pt-2"><b>My Files</b></h4>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-bordered" id="file-table">
+                    <div class="card-body py-4">
+                        {% comment %}<table class="table table-bordered" id="file-table">
                             <colgroup>
                                 <col width="20%">
                                 <col width="40%">
@@ -39,8 +39,24 @@
                                 <th class=text-center>Copy Link</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody>{% endcomment %}
+                            <div class="row">
                             {% for post in posts %}
+                                <div class="col-4" style="display: flex; flex-wrap: nowrap; word-wrap: break-word; word-break: break-word">
+                                <img src="{{ MEDIA_URL }}/default/document.png" height="128" alt="{{ MEDIA_URL }}" loading="lazy" style="margin-top: -3px; margin-right: 1rem" />
+                                <div style="line-height: 90%; display: flex; flex-direction: column; justify-content: space-between">
+                                    <div>
+                                        <p class="text-start"><strong>{{ post.title }}</strong></p>
+                                    <p class="text-start "><small>{{ post.description }}</small></p>
+                                    <p class="text-start"><a href="{{ post.file_path.url }}" download="{{ post.file_path|replaceBlank:'uploads/' }}">Download<i class="fa fa-download"></i></a></p>
+                                    </div>
+                                    <p class="text-start"><button class="btn btn-default bg-gradient btn-sm copy-link" type="button" data-url="{{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}" title="Copy Link tp clipboard"><i class="fa fa-copy"></i> Share Link</button></p>
+                                </div>
+                                </div>
+                            {% endfor %}
+                            </div>
+                          {% comment %}
+                          {% for post in posts %}
                                 <tr>
                                     <td class="text-start">{{ post.title }}</td>
                                     <td class="text-start">{{ post.description }}</td>
@@ -50,8 +66,8 @@
                                                                   <td class="text-center"><button class="btn btn-default bg-gradient btn-sm copy-link" type="button" data-url="{{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}" title="Copy Link tp clipboard"><i class="fa fa-copy"></i> Share Link</button></td>
                                 </tr>
                             {% endfor %}
-                            </tbody>
-                        </table>
+                           </tbody>
+                        </table>{% endcomment %}
                     </div>
                 </div>
             </div>

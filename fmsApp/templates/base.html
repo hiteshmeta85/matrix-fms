@@ -27,11 +27,16 @@
     <script type="text/javascript" src="{% static 'assets/default/js/script.js' %}"></script>
     {% block headerContent %} {% endblock headerContent %}
 </head>
+<style>
+    .background-color{
+        background-color: #FFF8F3;
+    }
+</style>
 
 <body class="">
 
     {% block TopNavigation %} {% include "TopNavigation.html" %} {% endblock TopNavigation %}
-    <main class="py-5">
+    <main class="py-5 background-color">
         <div class="container mb-3">
             {% if messages %}
             <div class="row">

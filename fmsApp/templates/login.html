@@ -11,11 +11,11 @@
 </style>
 <div class="d-flex flex-column w-100 justify-content-center align-items-center">
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div class="card card-default rounded-0 shadow">
+        <div class="card card-default rounded-0 shadow-3 rounded-3">
             <div class="card-header">
-                <h4 class="card-title"><b>Login</b></h4>
+                <h4 class="card-title pt-2 text-black"><b>Login</b></h4>
             </div>
-            <div class="card-body">
+            <div class="card-body pt-4">
                 <div class="container-fluid">
                     <form id="login-user">
                         {% csrf_token %}
@@ -23,18 +23,18 @@
                             <div class="mdc-layout-grid__inner">
                                 <div class="form-group mb-3">
                                     <label for="username" class="control-label">Username</label>
-                                    <input type="text" class="form-control rounded-0" name="username" id="username" required="required" autocomplete="off">
+                                    <input type="text" class="form-control rounded-3" name="username" id="username" required="required" autocomplete="off">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="password" class="control-label">Password</label>
-                                    <input type="password" class="form-control rounded-0" name="password" id="password" required="required" autocomplete="off">
+                                    <input type="password" class="form-control rounded-3" name="password" id="password" required="required" autocomplete="off">
                                 </div>
                                 <div class="form-group mb-3">
                                     <div class="d-flex w-100 justify-content-between align-items-center">
                                         <div class="col-md-4">
                                             {% comment %} <a href="{% url 'register-user' %}">Signup</a> {% endcomment %}
                                         </div>
-                                        <button class="btn btn-sm rounded-0 btn-primary">
+                                        <button class="btn btn-sm rounded-0 btn-primary rounded-3">
                                                 Login
                                             </button>
                                     </div>

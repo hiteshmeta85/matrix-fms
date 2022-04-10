@@ -1,13 +1,13 @@
 {% extends 'base.html' %} {% block pageContent%}
-<div class="container">
+<div class="container min-vh-100">
     <div class="row justify-content-center">
         <div class="col-lg-7 col-md-10 col-sm-12 col-xs-12">
-            <div class="card shadow rounded-0">
+            <div class="card shadow-3 rounded-3">
                 <div class="card-header">
-                    <div class="h5 card-title fw-bold mt-2 ps-4">My Profile</div>
+                    <div class="h5 text-black fw-bold mt-2 ps-4">My Profile</div>
                 </div>
                 <div class="card-body">
-                    <div class="container-fluid">
+                    <div class="container-fluid py-4">
                         <div class="row">
                             <div class="col-md-8">
                                 <dl>
@@ -23,9 +23,9 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="d-flex w-100 text-end justify-content-end">
-                        <a href="{% url 'update-password' %}" class="btn btn-light shadow-2 border btn-sm rounded-0 me-3">Update Password</a>
-                        <a href="{% url 'update-profile' %}" class="btn btn-primary shadow-2 btn-sm rounded-0">Update Profile</a>
+                    <div class="d-flex w-100 text-end justify-content-end py-2">
+                        <a href="{% url 'update-password' %}" class="btn btn-light shadow-2 border btn-sm rounded-3 me-3">Update Password</a>
+                        <a href="{% url 'update-profile' %}" class="btn btn-primary shadow-2 btn-sm rounded-3">Update Profile</a>
                     </div>
                 </div>
             </div>
