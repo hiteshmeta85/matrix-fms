@@ -15,7 +15,7 @@
         <div class="form-group mb-3 ">
             <label for="file_path" class="control-label">File</label>
             <input type="file" class="form-control rounded-0" id="file_path" name="file_path" value="" accept='image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt' {% if not post %} required {% endif %}> 
-            <small class="text-muted"><i>Accept Only: image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt</i></small>
+           {% comment %} <small class="text-muted"><i>Accept Only: image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt</i></small>{% endcomment %}
             {% if post.file_path %}
             <div><small><span class="text-muted">Current File:</span> <a href="{{ post.file_path.url }}" target="_blank">{{ post.file_path|replaceBlank:"uploads/" }}</a></small> </div>
             {% endif %}
