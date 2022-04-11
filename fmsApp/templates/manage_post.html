@@ -10,25 +10,30 @@
         </div>
         <div class="form-group mb-3">
             <label for="description" class="control-label">Description</label>
-            <textarea class="form-control rounded-0" name="description" id="description" rows="5" required>{{ post.description }}</textarea>
+            <textarea class="form-control rounded-0" name="description" id="description" rows="5"
+                      required>{{ post.description }}</textarea>
         </div>
         <div class="form-group mb-3 ">
             <label for="file_path" class="control-label">File</label>
-            <input type="file" class="form-control rounded-0" id="file_path" name="file_path" value="" accept='image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt' {% if not post %} required {% endif %}> 
-           {% comment %} <small class="text-muted"><i>Accept Only: image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt</i></small>{% endcomment %}
+            <input type="file" class="form-control rounded-0" id="file_path" name="file_path" value=""
+                   accept='image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt'
+                    {% if not post %} required {% endif %}>
+            {% comment %} <small class="text-muted"><i>Accept Only: image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt</i></small>{% endcomment %}
             {% if post.file_path %}
-            <div><small><span class="text-muted">Current File:</span> <a href="{{ post.file_path.url }}" target="_blank">{{ post.file_path|replaceBlank:"uploads/" }}</a></small> </div>
+                <div><small><span class="text-muted">Current File:</span> <a href="{{ post.file_path.url }}"
+                                                                             target="_blank">{{ post.file_path|replaceBlank:"uploads/" }}</a></small>
+                </div>
             {% endif %}
         </div>
     </form>
 </div>
 <script>
-    $(function() {
-        $('#post-form').submit(function(e) {
+    $(function () {
+        $('#post-form').submit(function (e) {
             e.preventDefault();
-            var _this = $(this)
+            let _this = $(this)
             $('.err-msg').remove();
-            var el = $('<div>')
+            let el = $('<div>')
             el.addClass("alert alert-danger err-msg")
             el.hide()
             if (_this[0].checkValidity() == false) {
@@ -47,17 +52,17 @@
                 dataType: 'json',
                 error: err => {
                     console.log(err)
-                    alert("An error occured ", 'error');
+                    alert("An error occurred ", 'error');
                     end_loader();
                 },
-                success: function(resp) {
+                success: function (resp) {
                     if (typeof resp == 'object' && resp.status == 'success') {
                         el.removeClass("alert alert-danger err-msg ")
                         location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         el.html(resp.msg)
                     } else {
-                        el.text("An error occured ", 'error');
+                        el.text("An error occurred ", 'error');
                         end_loader();
                         console.err(resp)
                     }

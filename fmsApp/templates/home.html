@@ -24,50 +24,32 @@
                         <h4 class="text-black pt-2"><b>My Files</b></h4>
                     </div>
                     <div class="card-body py-4">
-                        {% comment %}<table class="table table-bordered" id="file-table">
-                            <colgroup>
-                                <col width="20%">
-                                <col width="40%">
-                                <col width="25%">
-                                <col width="15%">
-                            </colgroup>
-                            <thead>
-                            <tr class="bg-gradient bg-light">
-                                <th class=text-center>Title</th>
-                                <th class=text-center>Description</th>
-                                <th class=text-center>FileName</th>
-                                <th class=text-center>Copy Link</th>
-                            </tr>
-                            </thead>
-                            <tbody>{% endcomment %}
-                            <div class="row">
+                        <div class="row">
                             {% for post in posts %}
-                                <div class="col-3 my-2" style="display: flex; flex-wrap: nowrap; word-wrap: break-word; word-break: break-word">
-                                <img src="{{ MEDIA_URL }}/default/document.png" height="128" alt="{{ MEDIA_URL }}" loading="lazy" style="margin-top: -3px; margin-right: 1rem" />
-                                <div style="line-height: 90%; display: flex; flex-direction: column; justify-content: space-between">
-                                    <div>
-                                        <p class="text-start"><strong>{{ post.title }}</strong></p>
-                                    <p class="text-start "><small>{{ post.description }}</small></p>
-                                    <p class="text-start"><a href="{{ post.file_path.url }}" download="{{ post.file_path|replaceBlank:'uploads/' }}">Download<i class="fa fa-download ms-1"></i></a></p>
+                                <div class="col-3 my-2"
+                                     style="display: flex; flex-wrap: nowrap; word-wrap: break-word; word-break: break-word">
+                                    <img src="{{ MEDIA_URL }}/default/document.png" height="128" alt="{{ MEDIA_URL }}"
+                                         loading="lazy" style="margin-top: -3px; margin-right: 1rem"/>
+                                    <div style="line-height: 90%; display: flex; flex-direction: column; justify-content: space-between">
+                                        <div>
+                                            <p class="text-start"><strong>{{ post.title }}</strong></p>
+                                            <p class="text-start "><small>{{ post.description }}</small></p>
+                                            <p class="text-start"><a href="{{ post.file_path.url }}"
+                                                                     download="{{ post.file_path|replaceBlank:'uploads/' }}">Download<i
+                                                    class="fa fa-download ms-1"></i></a></p>
+                                        </div>
+                                        <p class="text-start">
+                                            <button class="btn btn-default bg-gradient btn-sm copy-link" type="button"
+                                                    data-url="
+                                                            {{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}"
+                                                    title="Copy Link tp clipboard"><i class="fa fa-copy me-1"></i> Share
+                                                Link
+                                            </button>
+                                        </p>
                                     </div>
-                                    <p class="text-start"><button class="btn btn-default bg-gradient btn-sm copy-link" type="button" data-url="{{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}" title="Copy Link tp clipboard"><i class="fa fa-copy me-1"></i> Share Link</button></p>
-                                </div>
                                 </div>
                             {% endfor %}
-                            </div>
-                          {% comment %}
-                          {% for post in posts %}
-                                <tr>
-                                    <td class="text-start">{{ post.title }}</td>
-                                    <td class="text-start">{{ post.description }}</td>
-                                    <td class="text-start"><a href="{{ post.file_path.url }}"
-                                                              download="{{ post.file_path|replaceBlank:'uploads/' }}">{{ post.file_path|replaceBlank:'uploads/' }}
-                                        <i class="fa fa-download"></i></a></td>
-                                                                  <td class="text-center"><button class="btn btn-default bg-gradient btn-sm copy-link" type="button" data-url="{{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}" title="Copy Link tp clipboard"><i class="fa fa-copy"></i> Share Link</button></td>
-                                </tr>
-                            {% endfor %}
-                           </tbody>
-                        </table>{% endcomment %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,12 +62,12 @@
         $(function () {
             $('#file-table').find('td, th').addClass('align-middle px-2 py-1 text-sm')
             $('.copy-link').click(function () {
-                var input = $('<input class="clip-text">')
+                let input = $('<input class="clip-text">')
                 input.val($(this).attr('data-url'))
                 $('main').append(input)
                 input[0].select()
                 input[0].setSelectionRange(0, (input.val()).length)
-                var copy = document.execCommand('copy')
+                let copy = document.execCommand('copy')
                 if (copy) {
                     alert("Link Copied to Clipboard")
                 }
@@ -93,16 +75,6 @@
                     input.remove()
                 }, 300)
             })
-
-            {% comment %}
-            $('#file-table').dataTable({
-                "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                "pageLength": 25
-            })
-            {% endcomment %}
         })
     </script>
 {% endblock ScriptBlock %}
